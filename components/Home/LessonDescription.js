@@ -108,7 +108,7 @@ const LessonDescription = () => {
             <RecapIcon />
             <LessonRecapLabel>Watch lesson recap</LessonRecapLabel>
         </LessonRecap>
-        <StartLesson href="/" >Start lesson🤘</StartLesson>
+        <StartLesson href="/lesson" >Start lesson🤘</StartLesson>
             </CTAContainer>
         </Container>
     )

@@ -25,7 +25,6 @@ const GuitarPath = () => {
 
     const [isActive, setIsActive] = useState(false);
 
-    isActive ? console.log('isActive is true') : console.log('isActive is false')
 
     const controls = useAnimationControls()
 
