@@ -1,13 +1,11 @@
 import Head from 'next/head'
-import styled from 'styled-components'
+import HomeNavigation from '/components/Home/HomeNavigation'
+import Paths from '/components/Home/Paths'
 
 
 
-const Heading = styled.h1`
-  font-size: 3rem;
-`
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -16,7 +14,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <Heading>Hello</Heading>
+      <HomeNavigation />
+      <Paths />
     </>
   )
 }
+
+export default Home
