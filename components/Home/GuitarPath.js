@@ -31,12 +31,9 @@ const GuitarPath = () => {
     async function handleDragEnd(event, info) {
         const offset = info.offset.y
         const velocity = info.velocity.y
-        console.log(offset);
-        console.log(velocity);
 
         if (offset > 500 || velocity > 500) {
             await controls.start({ y: "100%", transition: { duration: 0.2 } })
-            console.log('yup')
             setIsActive(false)
         } else {
             controls.start({ y: 0, opacity: 1, transition: { duration: 0.5 } })
