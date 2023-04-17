@@ -18,6 +18,7 @@ const LessonDescriptionContainer = styled(motion.div)`
     position: fixed;
     height: 90vh;
     bottom: 0;
+    z-index: 10000;
 `
 
 const GuitarPath = () => {
