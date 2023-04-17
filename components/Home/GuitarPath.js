@@ -16,8 +16,7 @@ const Container = styled.div`
 
 const LessonDescriptionContainer = styled(motion.div)`
     position: fixed;
-    min-height: 90vh;
-    max-height: 90vh;
+    height: 90vh;
     bottom: 0;
 `
 
