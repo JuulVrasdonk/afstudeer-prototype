@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const Container = styled.div`
     width: 100vw;
-    height: 100%;
+    height: 90vh;
     padding: 44px 30px 22px 30px;
     background-color: white;
     border-radius: 25px 25px 0 0;
