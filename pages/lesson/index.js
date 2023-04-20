@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import LessonStart from '/components/Lesson/LessonStart'
 import { useState } from 'react';
+import LessonStart from '/components/Lesson/LessonStart'
+import LessonMain from '/components/Lesson/LessonMain'
 
 
 const Lesson = () => {
     const [finished, setFinished] = useState(false);
-    console.log(finished);
 
     return(
         <>
@@ -15,7 +15,9 @@ const Lesson = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {!finished && <LessonStart {...finished} setFinished={setFinished}/>}
+            {!finished && <LessonStart  setFinished={setFinished} />}
+            <LessonMain {...{finished}}/>
+
         </>
     )
 }

@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 const Container = styled.div``
 
 const StartLessonContainer = styled.div`
+    position: absolute;
+    top: 0;
     width: 100vw;
     height: 100vh;
     background-color: ${({started}) => started ? `#36363600`: `#36363680`};
@@ -44,6 +46,19 @@ const StartButton = styled.button`
     cursor: pointer;
 `
 
+const PermissionButton = styled.button`
+    background: #E90000;
+    border: none;
+    outline: none;
+    padding: 14px 15px 17px;
+    font-weight: 700;
+    color: white;
+    border-radius: 12px;
+    position: absolute;
+    top: 15px; 
+    left: 15px;
+`
+
 const TiltContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -61,14 +76,12 @@ const TiltHeading = styled.h2`
 `
 
 
-const LessonStart = ({finished, setFinished}) => {
+const LessonStart = ({setFinished}) => {
     const {width, height} = useWindowSize()
+
 
     const [count, setCount] = useState(0);
     const [started, setStarted] = useState(false);
-
-
-
 
     useEffect(() => {
         let interval;
@@ -97,7 +110,6 @@ const LessonStart = ({finished, setFinished}) => {
                     ) : (
                         <StartButton onClick={() => countDown()}>Start</StartButton>
                     )}
-                    
                 </StartLessonContainer> : 
                 <TiltContainer>
                     <TiltDevice />
