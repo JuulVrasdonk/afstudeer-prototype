@@ -10,6 +10,7 @@ const FullScreenButton = styled.button`
     outline: none;
     z-index: 10000;
     text-transform: uppercase;
+    cursor: pointer;
 `
 
 const RequestFullscreen = () => {
