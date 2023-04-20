@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import HomeNavigation from '/components/Home/HomeNavigation'
 import Paths from '/components/Home/Paths'
-import RequestFullscreen from '/components/Home/RequestFullscreen'
+
 
 
 
@@ -17,7 +17,6 @@ const Home = () => {
         <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <RequestFullscreen/>
       <HomeNavigation />
       <Paths />
     </>
