@@ -1,31 +1,13 @@
 import Head from 'next/head'
 import HomeNavigation from '/components/Home/HomeNavigation'
 import Paths from '/components/Home/Paths'
-import { useEffect } from 'react';
+import RequestFullscreen from '/components/Home/RequestFullscreen'
 
-
-const requestFullscreen = () => {
-  const element = document.documentElement;
-  if (element.requestFullscreen) {
-    element.requestFullscreen().catch(error => {
-    });
-  } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen().catch(error => {
-    });
-  } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen().catch(error => {
-    });
-  } else {
-    console.log('Fullscreen mode is not supported.');
-  }
-}
 
 
 
 const Home = () => {
-  useEffect(() => {
-    requestFullscreen();
-  }, []);
+
 
   return (
     <>
@@ -35,6 +17,7 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <RequestFullscreen/>
       <HomeNavigation />
       <Paths />
     </>
