@@ -17,7 +17,6 @@ const Lesson = () => {
             </Head>
             {!finished && <LessonStart  setFinished={setFinished} />}
             <LessonMain {...{finished}}/>
-
         </>
     )
 }
