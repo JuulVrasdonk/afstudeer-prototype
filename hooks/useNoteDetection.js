@@ -70,13 +70,13 @@ const useNoteDetection = (finished) => {
   ];
 
   const frequencyToNotes = (frequency) => {
-    const A4 = 444; // A4 frequency in Hz
+    const A4 = 440; // A4 frequency in Hz
     const C0 = A4 * Math.pow(2, -4.75); // frequency of lowest C note
     const noteIndex = 12 * Math.log2(frequency / C0);
     const noteIndexRounded = Math.round(noteIndex);
     const octave = noteIndexRounded == '-Infinity' ? '' : Math.floor(noteIndexRounded / 12) - 1 ;
     const noteName = noteNames[noteIndexRounded % 12] || '';
-    return `${noteName}${octave}`;
+    return `${noteName}`;
   };
 
   return frequencyToNotes(frequency);
