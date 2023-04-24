@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Tab from "../SVG/Tab"
 import { useState, useEffect } from "react"
 import useNoteDetection from "/hooks/useNoteDetection"
+import {motion} from "framer-motion"
 
 const Container = styled.div`
   width: 100vw;
@@ -20,11 +21,15 @@ const NotesHelper = styled.p`
   left: 5px;
 `
 
+const InteractiveTab = styled(motion.div)`
+  z-index: 0;
+`
+
 const LessonMain = ({ finished }) => {
   const playedNote = useNoteDetection(finished)
 
   const [index, setIndex] = useState(0)
-  const [correct, setCorrect] = useState(false)
+  const [correctNote, setCorrectNote] = useState(false)
 
   useEffect(() => {
     const expectedNotes = [
@@ -48,20 +53,23 @@ const LessonMain = ({ finished }) => {
     let timerId = null
     if (playedNote === expectedNotes[index]) {
       timerId = setTimeout(() => {
-        setCorrect(true)
+        setCorrectNote(true)
         setIndex(index + 1)
-        console.log(`Correct! Note: ${playedNote} Expected: ${expectedNotes[index]}`)
       }, 500)
     } else {
-      setCorrect(false)
+      setCorrectNote(false)
     }
     return () => clearTimeout(timerId)
   }, [playedNote, index])
 
+  const variants = {
+    finished: {x: "-100%"}
+  }
+ 
   return (
     <Container>
       <NotesHelper>{playedNote}</NotesHelper>
-      <Tab />
+        <Tab correctNote={correctNote} expectedNoteIndex={index} finished={finished} />
     </Container>
   )
 }

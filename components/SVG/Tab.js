@@ -1,10 +1,42 @@
-const Tab = (props) => (
-    <svg
+import { useRef, useEffect, useState } from "react"
+import styled from "styled-components";
+import { motion } from "framer-motion"
+
+const InteractiveTab = styled(motion.svg)``
+
+const Tab = ({correctNote, expectedNoteIndex , finished}) => {
+  const svgRef = useRef(null)
+  const [noteCircles, setNoteCircles] = useState([]);
+
+
+  useEffect(() => {
+    const circles = svgRef.current.querySelectorAll("circle")
+
+    setNoteCircles(Array.from(circles))
+  }, [])
+
+  noteCircles.forEach((index) => {
+    const playedIndex = index - 1
+
+    if (correctNote === true && index === expectedNoteIndex ) {
+      noteCircles[playedIndex].style.fill = "green"
+    }
+  })
+
+  const variants = {
+    finished: {x: "-100%"}
+  }
+
+  return (
+    <InteractiveTab
       xmlns="http://www.w3.org/2000/svg"
       width={3540}
       height={295}
       fill="none"
-      {...props}
+      ref={svgRef}
+      animate={{variants}} 
+      transition={{duration: 10, ease: "linear"}}
+      variants={variants}
     >
       <path fill="#EDEDED" d="M38 1h3496v291H38z" />
       <mask id="a" fill="#fff">
@@ -114,7 +146,7 @@ const Tab = (props) => (
         fill="#fff"
         d="M1190.47 217.159c-.85 0-1.6-.146-2.27-.437-.66-.296-1.18-.701-1.56-1.216-.38-.519-.57-1.118-.58-1.796h2.47c.02.284.11.534.28.75.18.212.41.377.69.495.29.117.62.176.98.176.37 0 .7-.067.99-.199.29-.133.51-.316.68-.551.16-.235.24-.506.24-.813 0-.31-.09-.585-.26-.824-.17-.242-.42-.432-.74-.568-.32-.136-.7-.204-1.14-.204h-1.08v-1.807h1.08c.38 0 .7-.065.99-.193.29-.129.51-.307.67-.534.16-.232.24-.5.24-.807 0-.292-.07-.548-.21-.767a1.409 1.409 0 0 0-.58-.523 1.921 1.921 0 0 0-.87-.188c-.33 0-.63.061-.91.182-.28.118-.5.286-.67.506-.16.22-.25.477-.26.773h-2.36c.01-.671.2-1.262.57-1.773.37-.511.87-.911 1.5-1.199.64-.292 1.35-.437 2.14-.437.81 0 1.51.145 2.11.437a3.48 3.48 0 0 1 1.41 1.182c.33.492.5 1.045.5 1.659 0 .651-.2 1.195-.61 1.631-.41.435-.94.712-1.59.829v.091c.86.11 1.51.407 1.96.892.45.481.67 1.083.67 1.807 0 .663-.19 1.252-.58 1.767-.38.515-.91.92-1.58 1.216-.68.295-1.45.443-2.32.443Z"
       />
-    </svg>
-  )
+    </InteractiveTab>
+  )}
   export default Tab
   
