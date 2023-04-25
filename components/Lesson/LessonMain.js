@@ -2,15 +2,13 @@ import styled from "styled-components"
 import Tab from "../SVG/Tab"
 import { useState, useEffect } from "react"
 import useNoteDetection from "/hooks/useNoteDetection"
-import {motion} from "framer-motion"
 
 const Container = styled.div`
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   align-items: center;
   padding-left: 27px;
+  overflow: hidden;
 `
 
 const NotesHelper = styled.p`
@@ -21,9 +19,12 @@ const NotesHelper = styled.p`
   left: 5px;
 `
 
-const InteractiveTab = styled(motion.div)`
-  z-index: 0;
+const Test = styled.div`
+    display: flex;
+    width: max-content;
 `
+
+
 
 const LessonMain = ({ finished }) => {
   const playedNote = useNoteDetection(finished)
@@ -33,25 +34,24 @@ const LessonMain = ({ finished }) => {
 
   useEffect(() => {
     const expectedNotes = [
-        "G",
-        "B",
-        "G",
-        "C",
-        "E",
-        "G",
-        "C",
-        "A",
-        "E",
-        "A",
-        "D",
-        "F#",
-        "G#",
-        "E",
-        "B",
-      ] 
-
+      "G",
+      "B",
+      "G",
+      "C",
+      "E",
+      "C",
+      "C",
+      "A",
+      "E",
+      "A",
+      "D",
+      "F#",
+      "G#",
+      "E",
+      "B",
+    ]
     let timerId = null
-    if (playedNote === expectedNotes[index]) {
+    if (playedNote === expectedNotes[index] && !correctNote) {
       timerId = setTimeout(() => {
         setCorrectNote(true)
         setIndex(index + 1)
@@ -60,16 +60,15 @@ const LessonMain = ({ finished }) => {
       setCorrectNote(false)
     }
     return () => clearTimeout(timerId)
-  }, [playedNote, index])
+  }, [playedNote, index, setIndex, correctNote])
 
-  const variants = {
-    finished: {x: "-100%"}
-  }
  
   return (
     <Container>
       <NotesHelper>{playedNote}</NotesHelper>
+      <Test>
         <Tab correctNote={correctNote} expectedNoteIndex={index} finished={finished} />
+      </Test>
     </Container>
   )
 }

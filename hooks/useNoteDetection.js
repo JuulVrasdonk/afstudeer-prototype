@@ -7,7 +7,7 @@ const useNoteDetection = (finished) => {
 
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 8192;
+    analyser.fftSize = 32768;
 
     // Add a biquad filter to the audio graph
     const filter = audioContext.createBiquadFilter();
