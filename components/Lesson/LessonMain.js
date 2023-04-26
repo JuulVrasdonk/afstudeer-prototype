@@ -26,11 +26,11 @@ const Test = styled.div`
 
 
 
-const LessonMain = ({ finished }) => {
-  const playedNote = useNoteDetection(finished)
-
+const LessonMain = ({ countdownFinished, setLessonFinished }) => {
+  const playedNote = useNoteDetection(countdownFinished)
   const [index, setIndex] = useState(0)
   const [correctNote, setCorrectNote] = useState(false)
+
 
   useEffect(() => {
     const expectedNotes = [
@@ -40,16 +40,34 @@ const LessonMain = ({ finished }) => {
       "C",
       "E",
       "C",
-      "C",
-      "A",
-      "E",
       "A",
       "D",
       "F#",
+      "C",
+      "A",
+      "E",
       "G#",
       "E",
       "B",
     ]
+
+      // "G",
+      // "B",
+      // "G",
+      // "C",
+      // "E",
+      // "C",
+      // "C",
+      // "A",
+      // "E",
+      // "A",
+      // "D",
+      // "F#",
+      // "G#",
+      // "E",
+      // "B",
+
+
     let timerId = null
     if (playedNote === expectedNotes[index] && !correctNote) {
       timerId = setTimeout(() => {
@@ -67,7 +85,7 @@ const LessonMain = ({ finished }) => {
     <Container>
       <NotesHelper>{playedNote}</NotesHelper>
       <Test>
-        <Tab correctNote={correctNote} expectedNoteIndex={index} finished={finished} />
+        <Tab {...{correctNote}} expectedNoteIndex={index} {...{countdownFinished}} {...{setLessonFinished}} />
       </Test>
     </Container>
   )

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-const useNoteDetection = (finished) => {
+const useNoteDetection = (countdownFinished) => {
   const [frequency, setFrequency] = useState(null);
 
   useEffect(() => {
-    if (!finished) return;
+    if (!countdownFinished) return;
 
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const analyser = audioContext.createAnalyser();
@@ -62,7 +62,7 @@ const useNoteDetection = (finished) => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(handleStream)
       .catch(handleError);
-  }, [finished]);
+  }, [countdownFinished]);
 
   const noteNames = [
     'C', 'C#', 'D', 'D#', 'E', 'F',

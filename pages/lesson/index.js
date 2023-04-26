@@ -2,10 +2,12 @@ import Head from 'next/head'
 import { useState } from 'react';
 import LessonStart from '/components/Lesson/LessonStart'
 import LessonMain from '/components/Lesson/LessonMain'
+import LessonEnd from '/components/Lesson/LessonEnd'
 
 
 const Lesson = () => {
-    const [finished, setFinished] = useState(false);
+    const [countdownFinished, setCountdownFinished] = useState(false);
+    const [lessonFinished, setLessonFinished] = useState(false);
 
     return(
         <>
@@ -15,8 +17,9 @@ const Lesson = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {!finished && <LessonStart  setFinished={setFinished} />}
-            <LessonMain {...{finished}}/>
+            {!countdownFinished && <LessonStart  setCountdownFinished={setCountdownFinished} />}
+            {lessonFinished === false && <LessonMain {...{countdownFinished}} {...{setLessonFinished}}/>}
+            {lessonFinished && <LessonEnd />}
         </>
     )
 }

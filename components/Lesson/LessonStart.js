@@ -77,7 +77,7 @@ const TiltHeading = styled.h2`
 `
 
 
-const LessonStart = ({setFinished}) => {
+const LessonStart = ({setCountdownFinished}) => {
     const {width, height} = useWindowSize()
 
 
@@ -89,16 +89,16 @@ const LessonStart = ({setFinished}) => {
         if (started && count > 0) {
         interval = setInterval(() => setCount(count - 1), 1000);
         } else if (count === 0 && started) {
-            setFinished(true);
+            setCountdownFinished(true);
             setStarted(false)
         }
         return () => clearInterval(interval);
-    }, [started, count, setFinished]);
+    }, [started, count, setCountdownFinished]);
 
     const countDown = () => {
         setCount(3);
         setStarted(true);
-        setFinished(false);
+        setCountdownFinished(false);
     };
 
     return(
